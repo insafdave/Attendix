@@ -392,8 +392,8 @@ function App() {
 
   const isAttendanceDateWithinSemester =
     authenticatedUser &&
-    attendanceDate >= authenticatedUser.semester_start &&
-    attendanceDate <= authenticatedUser.semester_end;
+    attendanceDate >= (authenticatedUser.semester_start || "2026-08-10") &&
+    attendanceDate <= (authenticatedUser.semester_end || "2026-12-18");
 
   const isAttendanceDateCollegeLeave = userCollegeLeaves.some(
     (leave) => leave.date === attendanceDate,
