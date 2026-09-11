@@ -383,10 +383,15 @@ function App() {
   const userCollegeLeaves = authenticatedUser
     ? getUserCollegeLeaves(collegeLeaves, authenticatedUser.id)
     : [];
-  const semesterStartDate = new Date(authenticatedUser.semester_start);
-  const semesterEndDate = new Date(authenticatedUser.semester_end);
+  const semesterStartDate = new Date(
+    authenticatedUser?.semester_start || "2026-08-10",
+  );
+  const semesterEndDate = new Date(
+    authenticatedUser?.semester_end || "2026-12-18",
+  );
 
   const isAttendanceDateWithinSemester =
+    authenticatedUser &&
     attendanceDate >= authenticatedUser.semester_start &&
     attendanceDate <= authenticatedUser.semester_end;
 
@@ -529,13 +534,13 @@ function App() {
   const overallClassesNeeded = getClassesNeeded(
     overallPresent,
     overallAbsent,
-    authenticatedUser.target_attendance || 85,
+    authenticatedUser?.target_attendance || 85,
   );
 
   const overallClassesCanMiss = getClassesCanMiss(
     overallPresent,
     overallAbsent,
-    authenticatedUser.target_attendance || 85,
+    authenticatedUser?.target_attendance || 85,
   );
 
   const overallPredictedAttendance = getAttendancePrediction(
@@ -579,11 +584,11 @@ function App() {
   const analyticsTotalClasses = overallPresent + overallAbsent;
   const analyticsTargetGap = Math.max(
     0,
-    (authenticatedUser.target_attendance || 85) - overallPercentage,
+    (authenticatedUser?.target_attendance || 85) - overallPercentage,
   );
   const analyticsMaxGoalGap = Math.max(
     0,
-    (authenticatedUser.maximum_attendance || 90) - overallPercentage,
+    (authenticatedUser?.maximum_attendance || 90) - overallPercentage,
   );
 
   const analyticsSubjectRanking = [...subjectAttendance].sort(
