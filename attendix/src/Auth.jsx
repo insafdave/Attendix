@@ -89,7 +89,8 @@ export default function Auth({ onLogin }) {
 
       onLogin(data.user);
     } catch (error) {
-      setErrorMessage("Unable to connect to Attendix server.");
+      console.error("Authentication error:", error);
+      setErrorMessage(error.message || "Unable to connect to Attendix server.");
     } finally {
       setLoading(false);
     }
