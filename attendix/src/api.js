@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://attendix-s2k.onrender.com/api";
+const API_BASE_URL = "https://attendix-s2kt.onrender.com/api";
 
 function getAuthHeaders() {
   const token = localStorage.getItem("attendix_token");
