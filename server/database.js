@@ -1,6 +1,13 @@
 const Database = require("better-sqlite3");
+const path = require("path");
 
-const db = new Database("attendix.db");
+const dbPath = process.env.VERCEL
+  ? path.join("/tmp", "attendix.db")
+  : path.join(__dirname, "attendix.db");
+
+console.log("SQLite database path:", dbPath);
+
+const db = new Database(dbPath);
 
 db.pragma("foreign_keys = ON");
 
