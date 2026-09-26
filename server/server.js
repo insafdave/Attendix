@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { authenticateToken } = require("./middleware");
+const { authenticateToken } = require("./authMiddleware");
 const db = require("./database");
 
 const users = require("./users");
