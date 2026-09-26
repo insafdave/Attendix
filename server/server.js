@@ -8,7 +8,19 @@ const { createUser, verifyPassword, createToken } = require("./auth");
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  "https://attendix-frontend.vercel.app",
+  "https://attendix.insaf.space",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -205,7 +217,6 @@ app.get("/api/subjects", authenticateToken, (req, res) => {
     });
   }
 });
-
 
 app.post("/api/subjects", authenticateToken, (req, res) => {
   try {
