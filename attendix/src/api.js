@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://attendix-s2kt.onrender.com/api";
+const API_BASE_URL = "https://attendix-one.vercel.app";
 
 function getAuthHeaders() {
   const token = localStorage.getItem("attendix_token");
