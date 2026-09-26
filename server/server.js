@@ -7,7 +7,6 @@ const users = require("./users");
 const { createUser, verifyPassword, createToken } = require("./auth");
 
 const app = express();
-const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -143,7 +142,7 @@ app.put("/api/auth/me", authenticateToken, (req, res) => {
       semester_start = ?,
       semester_end = ?,
       target_attendance = ?,
-      maximum_attendance = ?,
+      maximum_attendance = ?
       WHERE id = ?
       `,
     ).run(
@@ -207,7 +206,6 @@ app.get("/api/subjects", authenticateToken, (req, res) => {
   }
 });
 
-app.get("/api/subjects", authenticateToken, (req, res) => {});
 
 app.post("/api/subjects", authenticateToken, (req, res) => {
   try {
@@ -898,6 +896,4 @@ app.get("/api/database-test", authenticateToken, (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Attendix server running on http://localhost:${PORT}`);
-});
+module.exports = app;
